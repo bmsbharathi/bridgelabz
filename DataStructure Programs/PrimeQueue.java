@@ -95,7 +95,11 @@ class PrimeQueue
     for (i=low+2;i<=high;i++ ) {
       for(int j=2;j<i;j++)
       {
-
+        if(i==0 || i==1)
+        {
+          flag = 1;
+          break;
+        }
         if( i % j == 0 )
         {
           flag = 1;

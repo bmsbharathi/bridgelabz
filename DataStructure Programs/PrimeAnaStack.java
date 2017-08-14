@@ -80,16 +80,20 @@ class StackOperator
   }
 }
 
-class PrimeQueue
+class PrimeStack
 {
 
   public static void findPrime(int low, int high, StackOperator QO){
     int i,flag=0;
 
-    for (i=low+2;i<=high;i++ ) {
+    for (i=low;i<=high;i++ ) {
       for(int j=2;j<i;j++)
       {
+        if(i==0 || i==1)
+        {
+          flag = 1;
 
+        }
         if( i % j == 0 )
         {
           flag = 1;
