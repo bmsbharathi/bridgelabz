@@ -8,13 +8,31 @@ import java.io.IOException;
 import org.json.simple.parser.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import java.util.Date;
 
 class StackNode
 {
   StackNode link;
+  String stockSymbol,transaction;
+
+  StackNode(String sym,String trans)
+  {
+    link = null;
+    stockSymbol = sym;
+    transaction = trans;
+  }
+
 }
 class QueueNode {
+
   QueueNode link;
+  Date operatedOn;
+  QueueNode(Date d)
+  {
+    link = null;
+    operatedOn = d;
+  }
+
 }
 class ListNode
 {
@@ -36,6 +54,8 @@ class Operator
 {
   int listSize,queueSize,stackSize;
   ListNode start,end;
+  StackNode head;
+  QueueNode rear,front;
 
   Operator()
   {
@@ -44,6 +64,9 @@ class Operator
     stackSize=0;
     start = null;
     end = null;
+    head = null;
+    front = null;
+    rear = null;
   }
 
   void addToList(Operator O)
@@ -55,7 +78,6 @@ class Operator
 
     try{
       File fName = new File("JSON/StockManagement.json");
-
       jsonobj = (JSONObject) jparser.parse(new FileReader(fName));
       jArray = (JSONArray)jsonobj.get("Stocks");
 
@@ -125,7 +147,7 @@ class Operator
 
     {
 
-        System.out.print("\nLinked List = ");
+        System.out.print("\nShares owned in -->");
 
         if (listSize == 0)
 
@@ -157,9 +179,74 @@ class Operator
 
         System.out.print(ptr.stockSymbol);//" No of Shares: "+ptr.noOfStocks+" Price of Stock "+ptr.sharePrice+ "\n");
 
+  }
+
+  //STACK IMPLEMENTATION
+
+  int pop()
+  {
+    if(isEmpty())
+    {
+      System.out.println(" ");
+      return -1;
+      }
+    else
+    {
+      String val = head.transaction;
+      String val1 = head.stockSymbol;
+      head = head.link;
+      System.out.print("Last Operation performed: "+val+" on "+val1);
+      stackSize--;
+      return 1;
+    }
+  }
+
+  public void push(String symbol,String trans)
+  {
+    StackNode temp = head;
+    head = new StackNode(symbol,trans);
+    head.stockSymbol = symbol;
+    head.transaction = trans;
+    head.link = temp;
+    stackSize++;
+  }
+
+  public boolean isEmpty()
+  {
+    return (stackSize == 0);
 }
 
+  //QUEUE IMPLEMENTATION
 
+  void enqueue(Date d)
+  {
+    QueueNode temp = new QueueNode(d);
+    queueSize++;
+    if( rear == null )
+    {
+      rear = front = temp;
+      return;
+    }
+    rear.link = temp;
+    rear = temp;
+  }
+
+  Date dequeue()
+  {
+    if(rear == null)
+      {
+
+        return null;
+      }
+    QueueNode temp = rear;
+    rear = rear.link;
+
+    if(front == null)
+      rear = null;
+    // System.out.print(temp.operatedOn);
+    queueSize--;
+    return temp.operatedOn;
+}
 
 }
 
@@ -294,37 +381,50 @@ class StockManagement{
 
   public static void main(String args[]){
 
+    StockManagement tempTest = new StockManagement();
+    Operator list = new Operator();
+    Operator stack = new Operator();
+    Operator queue = new Operator();
+
     Scanner scan = new Scanner(System.in);
     char choice;
     String symbol;
     long amount;
-    StockManagement tempTest = new StockManagement();
-    Operator list = new Operator();
+    int temp=0;
+
     list.addToList(list);
     list.displayList();
 
 do {
 
-    System.out.println("\n\nEnter your choice:\nB: buy, S:sell, W:save, R:Report, Q: Quit");
+    System.out.println("\n\nEnter your choice:\nB:buy, S:sell, W:save, R:Report, Q: Quit");
     choice = scan.next().charAt(0);
-    System.out.println("");
+
 
       switch(choice)
       {
         case 'B':
+        Date date = new Date();
         System.out.println("Enter which stock to Buy");
         symbol = scan.next();
         System.out.println("Enter the No of Stock to buy");
         amount = scan.nextLong();
         tempTest.buyStock(symbol,amount);
+        stack.push(symbol,"Buy");
+        queue.enqueue(date);
+
         break;
 
         case 'S':
+        date = new Date();
         System.out.println("Enter which stock to sell");
         symbol = scan.next();
         System.out.println("Enter the No of Stock to sell");
         amount = scan.nextLong();
         tempTest.sellStock(symbol,amount);
+        stack.push(symbol,"Sell");
+        queue.enqueue(date);
+
         break;
 
         case 'W':
@@ -334,6 +434,16 @@ do {
 
         case 'R':
         tempTest.display();
+        System.out.println("\nLast performed operations:\n"+queue.queueSize);
+        temp = queue.queueSize;
+        while(temp > 0){
+          stack.pop();
+          System.out.print("\t");
+          System.out.println(queue.dequeue());
+          System.out.println("\n");
+          temp--;
+        }
+
         break;
 
         case 'Q':
