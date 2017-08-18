@@ -1,0 +1,20 @@
+{
+  "Inventory":[
+    {
+      "Name":"Rice",
+      "Weight":24,
+      "Price per Kg":40
+    },
+    {
+      "Name":"Wheat",
+      "Weight":30,
+      "Price per Kg":20
+    },
+    {
+      "Name":"Pulses",
+      "Weight":20,
+      "Price per Kg":30
+    }
+
+  ]
+}
