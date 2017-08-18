@@ -1,0 +1,20 @@
+{
+  "Stock":[
+    {
+      "Stock Name":"State Bank of India",
+      "No of Stocks":24,
+      "Share Price":282.20
+    },
+    {
+      "Stock Name":"TCS",
+      "No of Stocks":30,
+      "Share Price":2490.15
+    },
+    {
+      "Stock Name":"Axis Bank",
+      "No of Stocks":20,
+      "Share Price": 501.45
+    }
+
+  ]
+}
