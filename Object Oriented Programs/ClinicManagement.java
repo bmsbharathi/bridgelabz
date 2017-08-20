@@ -3,12 +3,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Date;
 
+class Appointment
+{
+  Date dateOfAppointment;
+  Doctor nameofDoctor;
+  int noOfAppointment;
+}
+
 class Doctor
 {
   //declare the Datamembers of doctor
   String docId,name,specialization,availability;
-  int noOfAppointments = 0;
-  String appointmentWith[] = new String[5];
+
   //Constructor to initialize the datamembers
   Doctor(String id,String dname,String spec, String availa)
   {
@@ -129,6 +135,7 @@ class ClinicManagement
       System.out.println("Doctor Not Found");
     }
   }
+
   //Searches Doctor ArrayList using Doctor ID and prints the details if found
   public void findDoctorByID(ArrayList<Doctor> doctorList, String did)
   {
@@ -152,6 +159,7 @@ class ClinicManagement
       System.out.println("Doctor Not Found");
     }
   }
+
   //Searches Patient ArrayList using Patient ID and prints the details if found
   public void findPatientByID(ArrayList<Patient> patientList, String pid)
   {
@@ -176,6 +184,7 @@ class ClinicManagement
     }
   }
 
+  //Searches the Patient ArrayList using Name and prints the details if found
   public void findPatientByName(ArrayList<Patient> patientList, String pname)
   {
     int flag =0;
@@ -199,6 +208,7 @@ class ClinicManagement
     }
   }
 
+  //Searches Patient ArrayList using Mobile number and prints the details if found
   public void findPatientByMobNo(ArrayList<Patient> patientList, String mobno)
   {
     int flag =0;
@@ -222,6 +232,7 @@ class ClinicManagement
     }
   }
 
+  //Prints all the available details in the Doctor ArrayList
   void printDoctorRecords(ArrayList<Doctor> doc)
   {
     Iterator iter = doc.iterator();
@@ -239,6 +250,7 @@ class ClinicManagement
     }
   }
 
+  //Prints all the available details in the Patient ArrayList
   void printPatientRecords(ArrayList<Patient> p)
   {
     Iterator iter = p.iterator();
@@ -256,42 +268,48 @@ class ClinicManagement
 
   public static void main(String args[])
   {
+    //Initializing all the variables
     Scanner scan = new Scanner(System.in);
     Doctor doc;
     Patient pat;
     String name,id,mobno,spec,availa;
     int age,choice,searchChoice;
 
+    //Creating objects of Doctor class
     Doctor bharathi = new Doctor("DIM10012","Bharathi","Cardiology","PM");
     Doctor Yog = new Doctor("DIM32112","Yog","Pediatrician","AM/PM");
     Doctor Dharsh = new Doctor("DIM45635","Dharshaanaa","Radiology","AM");
     Doctor Vik = new Doctor("DIM67843","Vikram","Opthalmology","AM");
 
+    //Creating objects of Patient class
     Patient p1 = new Patient("PID001","Patient1","9865639022",22);
     Patient p2 = new Patient("PID003","Patient2","9487315110",21);
 
+    //Creating an object of ClinicManagement class
     ClinicManagement CM = new ClinicManagement();
 
     //Creating an arraylist of Doctors and Patients
     ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
     ArrayList<Patient> patientList = new ArrayList<Patient>();
 
+    //Adding the created objects of Doctor class to the Doctor ArrayList
     doctorList.add(bharathi);
     doctorList.add(Yog);
     doctorList.add(Vik);
     doctorList.add(Dharsh);
 
+    //Adding the created objects of Patient class to the Patient ArrayList
     patientList.add(p1);
     patientList.add(p2);
 
+    //do..while(); to get the create the user driven menu
     do {
       System.out.println("\n--------------------\nEnter your choice\n1:Add Doctor \n2:Add Patient\n3:Print all Doctor's records \n4:Print all Patient's records \n5:Search Doctor \n6:Search Patient \n7:Exit");
       choice = scan.nextInt();
 
       switch(choice)
       {
-        case 1:
-
+        case 1:       //Adding a new Doctor to the ArrayList
         System.out.println("Enter the Doctor ID, Name, Specialization and Availability");
         id = scan.next();
         name = scan.next();
@@ -302,8 +320,7 @@ class ClinicManagement
         doctorList.add(doc);
         break;
 
-        case 2:
-
+        case 2:                                     //Adding a new Patient to the ArrayList
         System.out.println("Enter the Patient ID, Name, Age and Mobile number");
         id = scan.next();
         name = scan.next();
@@ -315,38 +332,38 @@ class ClinicManagement
         break;
 
         case 3:
-        CM.printDoctorRecords(doctorList);
+        CM.printDoctorRecords(doctorList);          //Prints all the details of Doctor available in
         break;
 
         case 4:
-        CM.printPatientRecords(patientList);
+        CM.printPatientRecords(patientList);        //Prints all the details of Patient available in
         break;
 
-        case 5:
+        case 5:                                     //Searches Doctor by ID, Name, Availability and Specialization
         do {
           System.out.println("\n------------\nSearch Doctor\n1:By Name \n2:By ID \n3:By Specialization\n4:By Availability");
           searchChoice = scan.nextInt();
           switch(searchChoice)
           {
-            case 1:
+            case 1:                               //Searches Doctor by Name
             System.out.println("Enter the Name of the Doctor");
             name = scan.next();
             CM.findDoctorByName(doctorList,name);
             break;
 
-            case 2:
+            case 2:                               //Searches Doctor by ID
             System.out.println("Enter the ID of the Doctor");
             id = scan.next();
             CM.findDoctorByID(doctorList,id);
             break;
 
-            case 3:
+            case 3:                               //Searches Doctor by Specialization
             System.out.println("Enter the Specialization of the Doctor");
             spec = scan.next();
             CM.findDoctorBySpec(doctorList,spec);
             break;
 
-            case 4:
+            case 4:                               //Searches Doctor by Availability
             System.out.println("Enter the Availability of the Doctor");
             spec = scan.next();
             CM.findDoctorByAvaila(doctorList,spec);
@@ -359,25 +376,25 @@ class ClinicManagement
         } while ( searchChoice!=4);
         break;
 
-        case 6:
+        case 6:                                 //Searches Patient by Name, ID, Mobile Number
         do {
           System.out.println("\n------------\nSearch Patient\n1:By Name \n2:By ID \n3:By Mobile Number");
           searchChoice = scan.nextInt();
           switch(searchChoice)
           {
-            case 1:
+            case 1:                             //Searches Patient by Name
             System.out.println("Enter the Name of the Patient");
             name = scan.next();
             CM.findPatientByName(patientList,name);
             break;
 
-            case 2:
+            case 2:                             //Searches Patient by ID
             System.out.println("Enter the ID of the Patient");
             id = scan.next();
             CM.findPatientByID(patientList,id);
             break;
 
-            case 3:
+            case 3:                             //Searches Patient by Mobile Number
             System.out.println("Enter the Mobile Number of the Patient");
             mobno = scan.next();
             CM.findPatientByMobNo(patientList,mobno);
@@ -391,7 +408,7 @@ class ClinicManagement
         } while ( searchChoice!=4);
         break;
 
-        case 7:
+        case 7:                                 //Exit case
         System.out.println("\nThank You!");
         System.exit(0);
 
