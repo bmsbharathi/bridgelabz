@@ -2,18 +2,102 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+/*
+  Created By: Bharathi B.M.S
+  Date: 19-08-2017
+  Purpose: A Clinic Management program that can add doctors and patients, prints all the doctor and
+  patient records, search doctor and patient records that are available and fix appointment with a doctor.
+
+*/
 
 class Appointment
 {
-  Date dateOfAppointment;
-  Doctor nameofDoctor;
-  int noOfAppointment;
+  int noOfAppointment=0;
+  Doctor doctor;
+  Patient patient;
+  String strDate;
+  DateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
+  Map<Date,Doctor> appointment = new HashMap<Date,Doctor>();
+  Map<Map,String> patientAppointmentMap = new HashMap<Map,String>();
+
+  //To set appointment with a particular doctor on a particular date
+  void setAppointment(Date date, Doctor d, Patient p) throws ParseException {    
+    doctor = d;
+    patient = p;
+
+    // To check if the doctor has other appointment on that day
+    if(doctor.appointmentCount.containsKey(date))   
+    {
+      noOfAppointment = doctor.appointmentCount.get(date);
+      if( noOfAppointment >= 2){      // To check if the doctor has more than 2 appointments on that day
+        System.out.println("\nAppointments full for the doctor on the particular day");
+      }
+      else                            //Creating an appointment and puttingit in appointment Map
+      {
+        noOfAppointment++;
+        appointment.put(date,doctor);
+        doctor.appointmentCount.put(date,noOfAppointment);
+        strDate = simpleFormat.format(date);
+        
+        
+        doctor.patientsList.add(patient.patId);
+        System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "+doctor.specialization+" on "+simpleFormat.format(date));
+      }
+    }
+      
+    else{                             //Creating an appointment and puttingit in appointment Map
+          appointment.put(date,doctor);
+          doctor.appointmentCount.put(date,1);
+          strDate = simpleFormat.format(date);
+          
+          doctor.patientsList.add(patient.patId);
+          System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "+doctor.specialization+" on "+simpleFormat.format(date));
+    }
+
+  }
+
+  //Printing all the available appointments
+  void printAllAppointments()
+  {
+    int i=0,size;
+    Set patMapSet = appointment.entrySet();
+    Iterator mapIter = patMapSet.iterator(); 
+    
+    if(appointment.isEmpty()){
+      System.out.println("No appointments yet!");
+    }
+    
+    for (Object obj : appointment.entrySet()) {
+     Map.Entry<Date, Doctor> entry = (Map.Entry) obj;
+     System.out.println("");
+     Date date = entry.getKey();
+     Doctor d = entry.getValue();
+     System.out.println("\n#:");
+
+     System.out.print("Name of the Doctor: " + d.name);
+     System.out.println("\nWith Patient: " + d.patientsList.get(i));
+
+     System.out.println("on : " + simpleFormat.format(date));
+     System.out.println("\n");
+     i++;
+    }
+
+  }
 }
 
 class Doctor
 {
   //declare the Datamembers of doctor
   String docId,name,specialization,availability;
+  Map<Date,Integer> appointmentCount = new HashMap<Date,Integer>();
+  ArrayList<String> patientsList = new ArrayList<String>();
 
   //Constructor to initialize the datamembers
   Doctor(String id,String dname,String spec, String availa)
@@ -36,7 +120,6 @@ class Patient
 {
   //declare the Datamembers of doctor
   String patId,patName,mobileNo,appointmentWith;
-  String appointmentOn;
   int age;
 
   //Constructor to initialize the datamembers
@@ -266,14 +349,15 @@ class ClinicManagement
   }
 
 
-  public static void main(String args[])
+  public static void main(String args[]) throws ParseException
   {
     //Initializing all the variables
     Scanner scan = new Scanner(System.in);
     Doctor doc;
     Patient pat;
-    String name,id,mobno,spec,availa;
-    int age,choice,searchChoice;
+    String name,id,mobno,spec,availa,dateString;
+    int age,choice,searchChoice,flag=0,flag1=0;
+    Date date;
 
     //Creating objects of Doctor class
     Doctor bharathi = new Doctor("DIM10012","Bharathi","Cardiology","PM");
@@ -284,9 +368,13 @@ class ClinicManagement
     //Creating objects of Patient class
     Patient p1 = new Patient("PID001","Patient1","9865639022",22);
     Patient p2 = new Patient("PID003","Patient2","9487315110",21);
+    Patient p3 = new Patient("PID002","Patient3","9489317201",23);
 
     //Creating an object of ClinicManagement class
     ClinicManagement CM = new ClinicManagement();
+
+    //Creating an object of Appointment class
+    Appointment appoint = new Appointment();
 
     //Creating an arraylist of Doctors and Patients
     ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
@@ -301,10 +389,13 @@ class ClinicManagement
     //Adding the created objects of Patient class to the Patient ArrayList
     patientList.add(p1);
     patientList.add(p2);
+    patientList.add(p3);
 
     //do..while(); to get the create the user driven menu
     do {
-      System.out.println("\n--------------------\nEnter your choice\n1:Add Doctor \n2:Add Patient\n3:Print all Doctor's records \n4:Print all Patient's records \n5:Search Doctor \n6:Search Patient \n7:Exit");
+      System.out.println("\n--------------------\nEnter your choice\n1:Add Doctor \n2:Add Patient"
+      +"\n3:Print all Doctor's records \n4:Print all Patient's records \n5:Search Doctor \n6:Search Patient "
+      +"\n7:Set Appointment\n8:Print all appointments \n9:Exit");
       choice = scan.nextInt();
 
       switch(choice)
@@ -341,7 +432,8 @@ class ClinicManagement
 
         case 5:                                     //Searches Doctor by ID, Name, Availability and Specialization
         do {
-          System.out.println("\n------------\nSearch Doctor\n1:By Name \n2:By ID \n3:By Specialization\n4:By Availability");
+          System.out.println("\n------------\nSearch Doctor\n1:By Name \n2:By ID \n"
+          +"3:By Specialization\n4:By Availability");
           searchChoice = scan.nextInt();
           switch(searchChoice)
           {
@@ -378,7 +470,8 @@ class ClinicManagement
 
         case 6:                                 //Searches Patient by Name, ID, Mobile Number
         do {
-          System.out.println("\n------------\nSearch Patient\n1:By Name \n2:By ID \n3:By Mobile Number");
+          System.out.println("\n------------\nSearch Patient\n1:By Name \n2:By ID \n3:By Mobile"
+          +" Number");
           searchChoice = scan.nextInt();
           switch(searchChoice)
           {
@@ -408,14 +501,63 @@ class ClinicManagement
         } while ( searchChoice!=4);
         break;
 
-        case 7:                                 //Exit case
+        case 7:                                 //Sets up appointment for patient by getting Doctor name, patient ID and Date
+        System.out.println("Enter the Doctor name");
+        name = scan.next();
+        System.out.println("Enter the Patient ID");
+        id = scan.next();
+        System.out.println("Enter the date");
+        dateString = scan.next();
+        DateFormat format = new SimpleDateFormat("dd/MM/yy");
+        date = format.parse(dateString); 
+
+        Iterator docIter = doctorList.iterator();
+        Iterator patIter = patientList.iterator();
+        Doctor d = null;
+        while(docIter.hasNext())
+        {
+          d = (Doctor)docIter.next();
+          if(d.name.equals(name))
+          {
+            flag = 1;
+            break;
+          }
+        }
+        if(flag ==1)
+        {
+          while(patIter.hasNext())
+          {
+            Patient p = (Patient)patIter.next();
+            if(p.patId.equals(id))
+            {
+              appoint.setAppointment(date,d,p);         //Set appointment function from Appointment class is called
+              flag1=1;
+            }
+          }
+        }
+        if(flag == 0)
+        {
+          System.out.println("\nDoctor not found");
+        }
+        if(flag1 == 0)
+        {
+          System.out.println("\nPatient not found");
+        }
+
+        break;
+        case 8:
+        System.out.println("\nAppointments: ");
+        appoint.printAllAppointments();
+        break;
+
+        case 9:                                 //Exit case
         System.out.println("\nThank You!");
         System.exit(0);
 
         default:
         System.out.println("Enter a valid choice");
       }
-    } while (choice != 7);
+    } while (choice != 9);
 
   }
 }
