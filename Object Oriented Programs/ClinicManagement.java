@@ -48,7 +48,8 @@ class Appointment
         
         
         doctor.patientsList.add(patient.patId);
-        System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "+doctor.specialization+" on "+simpleFormat.format(date));
+        System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "
+          +doctor.specialization+" on "+simpleFormat.format(date));
       }
     }
       
@@ -58,7 +59,8 @@ class Appointment
           strDate = simpleFormat.format(date);
           
           doctor.patientsList.add(patient.patId);
-          System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "+doctor.specialization+" on "+simpleFormat.format(date));
+          System.out.println("\nAppointment set with Doctor: "+doctor.name+" Specialist in "
+            +doctor.specialization+" on "+simpleFormat.format(date));
     }
 
   }
