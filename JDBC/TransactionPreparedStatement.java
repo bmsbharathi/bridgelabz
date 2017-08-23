@@ -1,21 +1,20 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class TransactionPreparedStatement {
+public class JDBCTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
-		String toAcc, fromAcc;
-		int amt;
+		int toAcc, fromAcc;
 		Connection conection = null;
 		Statement st = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		String createTableQuery = "CREATE TABLE bank(" + 
-				"accountno BIGINT(20) PRIMARY KEY," + 
-				"accname VARCHAR(20)," + 
-				"balance BIGINT(10)" + 
+		String createTableQuery = "CREATE TABLE bank(" +
+				"accountno BIGINT(20) PRIMARY KEY," +
+				"accname VARCHAR(20)," +
+				"balance BIGINT(10)" +
 				");";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -23,55 +22,49 @@ public class TransactionPreparedStatement {
 			System.out.println("Connection Successfull");
 			st = conection.createStatement();
 			conection.setAutoCommit(false);
-			
+
 			//st.execute(createTableQuery);
-			
+
 			System.out.println("Enter the Account number, Account name");
-			pst = conection.prepareStatement("INSERT INTO bank VALUES(?,?,?");
+			pst = conection.prepareStatement("INSERT INTO bank VALUES(?,?,?)");
 			pst.setInt(1, scan.nextInt());
 			pst.setString(2, scan.next());
 			pst.setInt(3, 10000);
 			pst.addBatch();
-			
+
 			System.out.println("Enter the Account number, Account name");
-			pst = conection.prepareStatement("INSERT INTO bank VALUES(?,?,?");
 			pst.setInt(1, scan.nextInt());
 			pst.setString(2, scan.next());
 			pst.setInt(3, 10000);
 			pst.addBatch();
-			
-			System.out.println("From accountname To accountname");	
-			fromAcc = scan.next();
-			toAcc = scan.next();
-			
-			pst = conection.prepareStatement("UPDATE bank SET balance = ? WHERE accname = ?");
+
+			System.out.println("From accountno To accountno");
+			fromAcc = scan.nextInt();
+			toAcc = scan.nextInt();
+
+			pst = conection.prepareStatement("UPDATE bank SET balance = ? WHERE accountno = ?");
 			pst.setInt(1, 14000);
-			pst.setString(2, toAcc);
+			pst.setInt(2, toAcc);
 			pst.addBatch();
-			
-					
-			pst = conection.prepareStatement("UPDATE bank SET balance = ? WHERE accname = ?");
+
 			pst.setInt(1, 6000);
-			pst.setString(2, fromAcc);
+			pst.setInt(2, fromAcc);
 			pst.addBatch();
-			
-			
-			pst.executeBatch();
-			conection.commit();
+
 			System.out.println("Table created Successfully");
 			System.out.println("\nAdding Rs2000 from bms to BHARATHI\n");
 			System.out.println("\nTable Entries");
-			
-			
+
+			pst.executeBatch();
+			conection.commit();
 			rs = st.executeQuery("SELECT * FROM myDb.bank");
-			
+
 			while(rs.next()) {
 				System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getInt(3));
-			System.out.println("Hell");
 			}
-			
-			
-			
+
+
+
 		}
 		catch(ClassNotFoundException e) {
 			System.out.println(e);
@@ -82,15 +75,15 @@ public class TransactionPreparedStatement {
 		finally {
 			try {
 				if(rs != null) {
-					
+
 					rs.close();
 				}
 				if(st != null) {
-					
+
 					st.close();
 				}
 				if(conection != null) {
-					
+
 					conection.close();
 				}
 			}
@@ -99,7 +92,7 @@ public class TransactionPreparedStatement {
 					e.printStackTrace();
 				}
 			}
-		
+
 	}
 
 }
