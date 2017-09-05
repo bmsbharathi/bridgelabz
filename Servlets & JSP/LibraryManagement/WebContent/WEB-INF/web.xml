@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>LibraryManagement</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+	<context-param>
+		<param-name>drivername</param-name>
+		<param-value>com.mysql.jdbc.Driver</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>LibraryHistory</servlet-name>
+		<servlet-class>LibraryHistory</servlet-class>
+		<init-param>
+			<param-name>startDate</param-name>
+			<param-value>September 4 1938</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>digitisedDate</param-name>
+			<param-value>September 4 2008</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>LibraryHistory</servlet-name>
+		<url-pattern>/history</url-pattern>
+	</servlet-mapping>
+</web-app>

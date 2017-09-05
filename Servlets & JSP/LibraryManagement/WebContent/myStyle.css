@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+body{
+	color:orange;
+	background:papayawhip;
+	font-family:Arial;
+	font-size:20px;
+}
+legend{
+	text-align:left;
+	text-size:30px;
+}
+a
+{
+	text-decoration:none;
+	color:orange;
+	font-size:25px;	
+}
+a:hover
+{
+	text-decoration:none;
+	color:blue;
+	font-size:30px;	
+}
+
+#body
+{
+	height:250px;
+	text-align:center;
+	line-height:150%;
+}
+pre{
+	font-family:Arial;
+	font-size:20px;
+}
+p{
+	text-align:right;	
+	
+}
+
+#footer
+{
+	background:orange;
+	height:200px;
+}
