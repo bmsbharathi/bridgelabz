@@ -1,25 +1,42 @@
 package utiltiy;
 
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 public abstract class DbUtil {
-	public static Connection createConnection(String dbName)
+	
+	static ComboPooledDataSource cpds = null;
+	
+	public static Connection createConnection(String dbName) throws SQLException 
 	{
-		String conn= "JDBC:mysql://localhost:3306/"+dbName+"?user=root&password=root";
-		Connection conection = null;
-		System.out.println(conn);
+		if(cpds == null) {
+		
+		cpds = new ComboPooledDataSource();
+		
+		String url = "JDBC:mysql://localhost:3306/"+dbName; 
+		System.out.println(url);
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conection = DriverManager.getConnection(conn);
-			
+		
+		cpds.setDriverClass("com.mysql.jdbc.Driver");
+		cpds.setJdbcUrl(url);
+		cpds.setUser("root");                                  
+		cpds.setPassword("root");                                  
+		cpds.setMinPoolSize(1);                                     
+		cpds.setAcquireIncrement(5);
+		cpds.setMaxPoolSize(20);			
+		
 		}
-		catch(ClassNotFoundException | SQLException e) {
+		catch(PropertyVetoException e) {
+			
 			System.out.println(e);
 		}
-		return conection;
 		
+	}
+		return  cpds.getConnection();
 	}
 	public static void closeConection(Connection conn) {
 		try {
@@ -30,3 +47,19 @@ public abstract class DbUtil {
 		}
 	}
 }
+
+
+
+/*String conn= "JDBC:mysql://localhost:3306/"+dbName+"?user=root&password=root";
+Connection conection = null;
+System.out.println(conn);
+
+
+try {
+	Class.forName("com.mysql.jdbc.Driver");
+	conection = DriverManager.getConnection(conn);
+	
+}
+catch(ClassNotFoundException | SQLException e) {
+	System.out.println(e);
+}*/
