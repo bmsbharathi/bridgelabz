@@ -27,7 +27,7 @@ public class AuthenticationFilter implements Filter {
 
 		response.setContentType("text/html");
 		
-		System.out.println("Inside filter Checking paramters..");
+		System.out.println("Inside Authentication filter");
 		/*uname = request.getParameter("uname");
 		pass = request.getParameter("pass");*/
 		
