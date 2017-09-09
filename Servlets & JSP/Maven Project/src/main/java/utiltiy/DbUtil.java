@@ -2,7 +2,6 @@ package utiltiy;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;

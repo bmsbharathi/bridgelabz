@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,8 +34,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String uname="",pass="",gender="",education="",query="SELECT * FROM logindetails WHERE uname =? AND pass =?";
-		int age=0;
+		String uname="",pass="",query="SELECT * FROM logindetails WHERE uname =? AND pass =?";
+
 		PrintWriter writer = response.getWriter();
 		Connection conection = null;
 		try {
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		boolean flag;
+
 		response.setContentType("text/html");
 		
 		HttpSession session = request.getSession(true);
@@ -84,6 +84,8 @@ public class LoginServlet extends HttpServlet {
 			}
 			else
 			{
+				//ServletContext ctx = request.getServletContext();
+				//ctx.setAttribute("Test", "Testvalue");
 				
 				writer.print("<script>alert('Login failed! try again');</script>");
 				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");

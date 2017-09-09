@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +27,7 @@ public class LogoutServlet extends HttpServlet {
 		session = request.getSession(false);
 		System.out.println(session);
 		response.sendRedirect("index.jsp");
+		
 	}
 
 

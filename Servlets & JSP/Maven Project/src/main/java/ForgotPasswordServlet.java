@@ -84,9 +84,9 @@ public class ForgotPasswordServlet extends HttpServlet {
 	        props.put("mail.smtp.socketFactory.fallback", "false");
 
 	        Session mailSession = Session.getInstance(props, new javax.mail.Authenticator() {
-	        	Scanner scan = new Scanner(System.in);
+	        	
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication("bmsbharathi@gmail.com", "bharathilumiaNEXUS" );
+	                return new PasswordAuthentication("bmsbharathi@gmail.com", "PASSWORD" );
 	            }
 	        });
 

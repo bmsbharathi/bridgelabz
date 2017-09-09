@@ -21,7 +21,6 @@
 			<tr><td>Email:</td><td>  </td>  <td></td><td><input type="text" name="email"  required></td></tr>
 			<tr></tr>
 			<tr><td></td><td><input type="submit" value="Signup"></td></tr>
-			<br><br>
 		</table>
 		</form>
 		<p align="right"><a href="index.jsp">Go To Login page</a></p>

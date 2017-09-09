@@ -7,19 +7,20 @@ import javax.servlet.http.HttpSessionListener;
 @WebListener
 public class SessionListener implements HttpSessionListener{
 	
-	static int noOfSessions=0; 
-	
+	static int noOfSessions=1; 
+		
 	public void sessionCreated(HttpSessionEvent arg0) {
 	
+
+		System.out.println("Session Created!\tSession no:"+ noOfSessions);
 		noOfSessions++;
-		System.out.println("Session Created\nSession no:"+noOfSessions);
-		
-		
 	}
 
 	public void sessionDestroyed(HttpSessionEvent arg0) {
 
-		System.out.println("Session Destroyed");
+		
+		System.out.println("Session Destroyed ");
+		
 		
 	}
 

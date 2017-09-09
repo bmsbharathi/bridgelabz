@@ -33,5 +33,9 @@
 		<p align="right"><a href="Signup.jsp">New User?</a></p>
 	</fieldset>
 	</center>
+	<%-- <%
+	ServletContext ctx = request.getServletContext();
+	out.print(ctx.getAttribute("Test"));
+	%> --%>
 </body>
 </html>
