@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+ 
+ <mapper namespace='UserMapper'>
+ 
+ <resultMap type='User' id='UserResult'>
+    <result property='email' column='email'/>
+    <result property='password' column='password'/>
+    <result property='uname' column='uname'/>
+    <result property='age' column='age'/>
+    <result property='education' column='education'></result>   
+ </resultMap>
+ 
+ <select id="getAllUsers" resultMap='UserResult'>
+SELECT * FROM userdetails 
+ </select> 
+ 
+<insert id="insertUser">
+INSERT INTO userdetails (uname, age, education, gender, email) VALUES (#{uname}, #{age}, #{education}, #{gender}, #{email})
+</insert>
+
+<delete id="deleteUser" parameterType="string">
+DELETE FROM userdetails WHERE uname = #{uname}
+</delete>
+
+<update id="updateEmail" parameterType="map">
+UPDATE userdetails 
+SET 
+email = #{0} 
+WHERE 
+uname = #{1}
+</update>
+
+
+</mapper>
