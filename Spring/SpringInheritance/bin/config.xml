@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+
+	<bean id="studentBean" class="Student" destroy-method="dest">
+		<property name="name" value="Balaagic"></property>
+		<property name="courses">
+			<list>
+				<value>DBMS</value>
+				<value>Data Structures</value>
+				<value>Web Technology</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="phoneNumberBean" class="PhoneNumber" destroy-method="dest">
+		<property name="number">
+			<map>
+				<entry key = "+11" value = "9597307529"/>
+			</map>
+		</property>	
+	</bean>
+	
+		
+	<bean id="studentBean2" class="Student" parent="studentBean">
+	<property name="number" ref="phoneNumberBean"></property>
+		<!-- 
+		<constructor-arg>
+			<ref bean="phoneNumberBean"/>
+		</constructor-arg> -->
+	</bean>	
+	
+</beans>

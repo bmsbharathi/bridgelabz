@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+
+	<bean id="personBean" class="Student" destroy-method="dest">
+		<constructor-arg value="Bharathi"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Operating System</value>
+				<value>DataBase Management System</value>
+				<value>DataStructures</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg><ref bean="phoneNumberBean"/></constructor-arg>
+		<constructor-arg>
+			<set>
+				<ref bean="arrear1"/>  
+				<ref bean="arrear2"/>
+				<ref bean="arrear"/>
+			</set>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="phoneNumberBean" class="PhoneNumber" destroy-method="dest">
+		<constructor-arg>
+			<map>
+				<entry key="+91" value="9865639022"></entry>
+			</map>
+		</constructor-arg>		
+	</bean>
+	
+	<bean id="arrear" class="Arrears">
+		<constructor-arg value="M1" type="String"></constructor-arg>
+	</bean>
+	
+	<bean id="arrear1" class="Arrears">
+		<constructor-arg value="M2" type="String"></constructor-arg>
+	</bean>
+	
+	<bean id="arrear2" class="Arrears">
+		<constructor-arg value="M3" type="String"></constructor-arg>
+	</bean>
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+
+	<bean id="studentBean" class="Student" destroy-method="dest">
+		<property name="name" value="Balaagic"></property>
+		<property name="courses">
+			<list>
+				<value>DBMS</value>
+				<value>Data Structures</value>
+				<value>Web Technology</value>
+			</list>
+		</property>
+		<property name="number" ref="phoneNumberBean"></property>
+		<property name="arrears">
+			<set>
+				<ref bean="arrear"/>
+				<ref bean="arrear1"/>
+				<ref bean="arrear2"/>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="phoneNumberBean" class="PhoneNumber" destroy-method="dest">
+		<property name="number">
+			<map>
+				<entry key = "+11" value = "9597307529"/>
+			</map>
+		</property>	
+	</bean>
+		
+	<bean id="arrear" class="Arrears">
+		<property name="name" value="M1"></property>
+	</bean>
+	
+	<bean id="arrear1" class="Arrears">
+		<property name="name" value="M3"></property>
+	</bean>
+	
+	<bean id="arrear2" class="Arrears">
+		<property name="name" value="M2"></property>
+	</bean>
+	
+</beans>
