@@ -1,0 +1,11 @@
+com/bridgeit/DAO/UserMapperImpl.class
+com/bridgeit/DAO/UserMapper.class
+com/bridgeit/Services/GenOtpService.class
+com/bridgeit/MyBatisUtility/MyBatisUtil.class
+com/bridgeit/Model/Login.class
+com/bridgeit/Model/Register.class
+com/bridgeit/Services/UserService.class
+com/bridgeit/Controller/LoginController.class
+com/bridgeit/Controller/ResetPasswordController.class
+com/bridgeit/Services/FormValidater.class
+com/bridgeit/Controller/RegistrationController.class

@@ -1,0 +1,52 @@
+package com.bridgeit.Services;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+
+import com.bridgeit.Model.Register;
+
+@Component
+public class FormValidater implements Validator {
+
+	@Override
+	public boolean supports(Class<?> arg0) {
+
+		return Register.class.equals(arg0);
+	}
+
+	@Override
+	public void validate(Object arg0, Errors errors) {
+
+		Register reg = (Register) arg0;
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name", "Please Enter Your name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "age", "error.age", "Please Enter Your age");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "error.email", "Please Enter Your Email");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "adhaar_Id", "error.adhaar_Id", "Please Enter Your id");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.username", "Please Enter Your username");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.password", "Please Enter Your password");
+		Pattern patt = Pattern.compile(
+				"^((([!#$%&'*+\\-/=?^_`{|}~\\w])|([!#$%&'*+\\-/=?^_`{|}~\\w][!#$%&'*+\\-/=?^_`{|}~\\.\\w]{0,}[!#$%&'*+\\-/=?^_`{|}~\\w]))[@]\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)$");
+		Matcher matcher = patt.matcher(reg.getEmail());
+
+		if (matcher.find()) {
+			System.out.println("Valid");
+			System.out.println(reg.getEmail());
+		} else {
+			System.out.println(reg.getEmail());
+			System.out.println("Not Valid");
+			errors.rejectValue("email", "error.email", "Invalid emailId");
+		}
+	}
+
+	public void validate1(Object arg0, Errors errors) {
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.username", "Please Enter Your username");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.password", "Please Enter Your password");
+
+	}
+}
