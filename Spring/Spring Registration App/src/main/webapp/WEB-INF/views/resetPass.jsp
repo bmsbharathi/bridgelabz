@@ -9,7 +9,7 @@
 </head>
 <body>
 <b><center>Enter your Username<br><br><br></b>
-<div>${message}</div>
+<div style="color: red;">${message}</div>
 
 <br>
 <form method="post" action="reset">

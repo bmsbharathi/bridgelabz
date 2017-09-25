@@ -17,7 +17,7 @@
 		<center>
 			<h2>Check Your mail for OTP</h2>
 
-			<div>${message}</div>
+			<div><h5 style="color:red;">${message}</h5></div>
 
 			<input type="text" name="usrCode"> <input type="hidden"
 				name="genCode" value=<%=OTP%>> <input type="hidden"

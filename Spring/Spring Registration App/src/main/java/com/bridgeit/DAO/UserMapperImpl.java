@@ -15,7 +15,10 @@ public class UserMapperImpl implements UserMapper {
 			UserMapper usermapper = session.getMapper(UserMapper.class);
 			usermapper.insertUser(user);
 			session.commit();
-		} finally {
+		} 
+		
+		
+		finally {
 			session.close();
 		}
 	}
@@ -26,7 +29,7 @@ public class UserMapperImpl implements UserMapper {
 		try {
 			UserMapper usermapper = session.getMapper(UserMapper.class);
 			Register reg = usermapper.getUser(user);
-			System.out.println(reg);
+			
 			session.commit();
 			return reg;
 		} finally {
@@ -70,17 +73,36 @@ public class UserMapperImpl implements UserMapper {
 	@Override
 	public void updatePass(String email,String pass) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		int n;
 		try {
 			UserMapper usermapper = session.getMapper(UserMapper.class);
 			usermapper.updatePass(email,pass);
-			System.out.println("disturbed: ");
-			System.out.println(email+"   "+pass);
+			
+			
 			session.commit();
 		} finally {
 			session.close();
 		}
 
+	}
+
+	@Override
+	public String checkEmail(String email) {
+
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		String email1="";
+		
+		try {
+			UserMapper usermapper = session.getMapper(UserMapper.class);
+			email1 = usermapper.checkEmail(email);
+			
+			session.commit();
+			return email1;
+		} finally {
+			session.close();
+			
+		}
+		
+		
 	}
 
 }

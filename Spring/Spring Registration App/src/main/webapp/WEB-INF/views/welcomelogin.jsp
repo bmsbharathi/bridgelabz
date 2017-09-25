@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	if (session.getAttribute("userObject") == null) {
-
 		RequestDispatcher rd = request.getRequestDispatcher("/");
 		rd.forward(request, response);
 	} else {
@@ -15,7 +14,7 @@
 </head>
 <body>
 <p align="right"><a href="logout">Logout</a></p>
-	<h1 align="center">After Login</h1>
+	<h1 align="center" style="color:green;">Welcome</h1>
 	Welcome ${loginuser.username}
 	<br><br><br> ${loginuser.password}
 </body>

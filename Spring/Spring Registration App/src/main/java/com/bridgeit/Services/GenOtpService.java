@@ -1,6 +1,6 @@
 package com.bridgeit.Services;
 
-import java.util.Date;
+import java.util.Date; 
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.*;
@@ -9,7 +9,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class GenOtpService {
@@ -40,7 +39,7 @@ public class GenOtpService {
 		Session mailSession = Session.getInstance(props, new javax.mail.Authenticator() {
 
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("bmsbharathi@gmail.com", "PASSWORD");
+				return new PasswordAuthentication("bmsbharathi@gmail.com", "bharathilumiaNEXUS");
 			}
 		});
 
@@ -53,7 +52,6 @@ public class GenOtpService {
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 		msg.setSentDate(new Date());
 		msg.setSubject("Password Reset");
-		Random rand = new Random();
 		// --[ Create the body of the mail
 		OTP = getOTP();
 		msg.setText("Your OTP: " + OTP);

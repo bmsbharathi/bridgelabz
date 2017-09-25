@@ -1,8 +1,7 @@
 package com.bridgeit.Controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView dologinbean() {
-
+		
 		ModelAndView mav = new ModelAndView("login");
 		Login loginuser = new Login();
 		mav.addObject("loginuser", loginuser);
@@ -36,15 +35,16 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String Logout(HttpServletRequest request) {
+	public ModelAndView Logout(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("login");
-
+		
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "redirect:/";
-
+		ModelAndView mav = new ModelAndView("login");
+		mav.addObject("loginuser", new Login());
+		mav.addObject("messages", "Successfully Logged Out");
+		return mav;
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -58,27 +58,32 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView loginuser(@Valid @ModelAttribute("loginuser") Login loginuser, BindingResult result,
+	public ModelAndView loginuser(@ModelAttribute("loginuser") Register loginuser, BindingResult result,
 			HttpServletRequest request, HttpSession session) {
-
+		
+		validator.validate1(loginuser, result);
 		if (result.hasErrors()) {
 
 			ModelAndView mav = new ModelAndView("login");
 
 			return mav;
 		} else {
-
-			System.out.println(loginuser.getUsername());
-
+			
 			session = request.getSession(true);
 			session.setAttribute("userObject", loginuser);
-
-			Register reg = service.getUser(loginuser);
+			
+			Login login = new Login();
+			
+			login.setUsername(loginuser.getUsername());
+			login.setPassword(loginuser.getPassword());
+			
+			Register reg = service.getUser(login);
+			
 			ModelAndView mav = null;
 			if (reg != null) {
-				System.out.println(reg.getUsername() + " " + reg.getPassword());
-				mav = new ModelAndView("welcomelogin", "Login", reg);
-				mav.addObject("loginuser", loginuser);
+				
+				mav = new ModelAndView("welcome");
+				mav.addObject("loginuser", reg);
 			} else {
 				mav = new ModelAndView("login", "message", "Invalid Login");
 			}

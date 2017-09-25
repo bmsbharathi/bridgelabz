@@ -1,9 +1,6 @@
 package com.bridgeit.Controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bridgeit.Model.Register;
 import com.bridgeit.Services.FormValidater;
 import com.bridgeit.Services.UserService;
-
 
 @Controller
 public class RegistrationController {
@@ -34,15 +30,15 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String adduser( @Valid @ModelAttribute("user") Register user, BindingResult result) {
+	public String adduser(@ModelAttribute("user") Register user, BindingResult result) {
 		validator.validate(user, result);
 		if (result.hasErrors()) {
 
 			return "register";
 		} else {
+
 			System.out.println(user);
 			service.insertuser(user);
-
 			return "redirect:/";
 
 		}

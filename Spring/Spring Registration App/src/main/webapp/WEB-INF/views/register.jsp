@@ -19,13 +19,13 @@
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="adhaar_Id" />ID</td>
-				<td><form:input path="adhaar_Id" /> <form:errors path="adhaar_Id" /></td>
+				<td><form:label path="adhaar_Id" />Adhaar ID</td>
+				<td><form:input path="adhaar_Id" value=" "/> <form:errors path="adhaar_Id" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td><form:label path="age"/>Age</td>
-				<td><form:input path="age"/> <form:errors path="age" /></td>
+				<td><form:input path="age" value=" "/> <form:errors path="age" /></td>
 			</tr>
 			<tr></tr>
 			<tr>

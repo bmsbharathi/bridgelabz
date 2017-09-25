@@ -13,5 +13,7 @@ public interface UserMapper {
 	
 	public String getEmail(String uname);
 	
+	public String checkEmail(String email);
+	
 	public void updatePass(String email,String pass);
 }

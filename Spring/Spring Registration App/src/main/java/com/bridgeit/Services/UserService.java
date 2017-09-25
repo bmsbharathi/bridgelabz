@@ -1,5 +1,6 @@
 package com.bridgeit.Services;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +26,25 @@ public class UserService {
 
 	public String checkUser(String uname) {
 		String name = mapperimpl.checkUser(uname);
-		System.out.println("Name: " + name);
+
 		return name;
 	}
 
 	public String getEmail(String uname) {
 		String email = mapperimpl.getEmail(uname);
-		System.out.println("Email: " + email);
+
 		return email;
 	}
 
+	public String checkEmail(String email) {
+		String email1 = mapperimpl.getEmail(email);
+
+		return email1;
+	}
+	
 	public void updatePass(String email, String pass) {
 
 		mapperimpl.updatePass(email, pass);
-		System.out.println("ENTERED2");
 
 	}
 }

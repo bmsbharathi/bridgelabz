@@ -2,17 +2,14 @@ package com.bridgeit.Model;
 
 import java.io.Serializable;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class Login implements Serializable {
 
 	private static final long serialVersionUID = 9179015705859221931L;
-	@NotEmpty
+
 	private String username;
-	@NotEmpty
+
 	private String password;
 
-	
 	public Login() {
 		super();
 
@@ -39,5 +36,4 @@ public class Login implements Serializable {
 		return "Login [username=" + username + ", password=" + password + "]";
 	}
 
-	
 }

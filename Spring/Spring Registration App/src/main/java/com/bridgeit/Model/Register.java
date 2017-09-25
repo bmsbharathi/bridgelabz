@@ -2,10 +2,6 @@ package com.bridgeit.Model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class Register implements Serializable {
 
 	private static final long serialVersionUID = -9067540169632985515L;
@@ -19,11 +15,7 @@ public class Register implements Serializable {
 	private String email;
 
 	private String username;
-	/*
-	 * @NumberFormat(style = Style.NUMBER)
-	 * 
-	 * @Size(min =11,max =11)
-	 */
+
 	private String password;
 
 	public Register() {

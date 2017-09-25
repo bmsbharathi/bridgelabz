@@ -21,7 +21,7 @@ public class FormValidater implements Validator {
 
 	@Override
 	public void validate(Object arg0, Errors errors) {
-
+		
 		Register reg = (Register) arg0;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name", "Please Enter Your name");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "age", "error.age", "Please Enter Your age");
@@ -41,6 +41,19 @@ public class FormValidater implements Validator {
 			System.out.println("Not Valid");
 			errors.rejectValue("email", "error.email", "Invalid emailId");
 		}
+
+		patt = Pattern.compile("^(([a-zA-Z]+\\d+)|(\\d+[a-zA-Z]+))[a-zA-Z0-9]*$");
+		matcher = patt.matcher(reg.getPassword());
+
+		if (matcher.find()) {
+			System.out.println("Valid");
+			//System.out.println(reg.getEmail());
+		} else {
+			//System.out.println(reg.getEmail());
+			System.out.println("Not Valid");
+			errors.rejectValue("password", "error.password", "Should contain atleast one alphabet and one number");
+		}
+
 	}
 
 	public void validate1(Object arg0, Errors errors) {

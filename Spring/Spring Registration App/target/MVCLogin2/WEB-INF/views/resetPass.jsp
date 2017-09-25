@@ -9,10 +9,13 @@
 </head>
 <body>
 <b><center>Enter your Username<br><br><br></b>
-<form method="post" action="reset">
-<div>${message}</div>
-<input type="text" name="uname">
+<div style="color: red;">${message}</div>
 
+<br>
+<form method="post" action="reset">
+
+<input type="text" name="uname">
+<div>${message2}</div><br>
 <input type="Submit" value="Generate OTP">
 </form>
 </center>

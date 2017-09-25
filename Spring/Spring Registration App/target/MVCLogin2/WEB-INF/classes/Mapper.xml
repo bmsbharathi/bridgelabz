@@ -26,5 +26,8 @@
 		email from springmvcuser where
 		username=#{uname}
 	</select>
+	<select id="updatePass" parameterType="string">
+		update springmvcuser set password = #{1} where email = #{0}
+	</select>
 
 </mapper> 

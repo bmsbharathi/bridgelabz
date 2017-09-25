@@ -19,35 +19,35 @@
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="adhaar_Id" />ID</td>
-				<td><form:input path="adhaar_Id" /> <form:errors path="adhaar_Id" /></td>
+				<td><form:label path="adhaar_Id" />Adhaar ID</td>
+				<td><form:input path="adhaar_Id" value=" "/> <form:errors path="adhaar_Id" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="age" />Age</td>
-				<td><form:input path="age" /> <form:errors path="age" /></td>
+				<td><form:label path="age"/>Age</td>
+				<td><form:input path="age" value=" "/> <form:errors path="age" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="email" />Email ID</td>
-				<td><form:input path="email" /> <form:errors
+				<td><form:label path="email"/>Email ID</td>
+				<td><form:input path="email"/> <form:errors
 						path="email" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="username" />Username</td>
-				<td><form:input path="username" /> <form:errors
+				<td><form:label path="username"/>Username</td>
+				<td><form:input path="username"/> <form:errors
 						path="username" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><form:label path="password" />Password</td>
-				<td><form:password path="password" /> <form:errors
+				<td><form:label path="password"/>Password</td>
+				<td><form:password path="password"/> <form:errors
 						path="password" /></td>
 			</tr>
 			<tr></tr>
 			<tr>
-				<td><input type="submit" value="Register" /></td>
+				<td><input type="submit" value="Register"/></td>
 			</tr>
 			</form:form>
 		</table>

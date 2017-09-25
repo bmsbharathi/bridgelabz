@@ -42,13 +42,13 @@ public class ResetPasswordController {
 		if (name == null) {
 
 			model.addAttribute("message", "Invalid Username!");
-			System.out.println("Hell!Invalid username");
+			
 			return "resetPass";
 		} else {
 
-			ModelMap mode = mailService.sendMail(email);
+			model = mailService.sendMail(email);
 
-			request.setAttribute("OTP", mode.get("OTP"));
+			request.setAttribute("OTP", model.get("OTP"));
 
 			request.setAttribute("emaill", email);
 			return "reset";
