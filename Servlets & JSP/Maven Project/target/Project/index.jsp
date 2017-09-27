@@ -6,8 +6,11 @@
 </head>
 <body>
 <%
+ServletContext ctx = request.getServletContext();
+ctx.setAttribute("Test", "Testvalue");
+ctx.removeAttribute("Test");
 
-	 	if(request.getAttribute("error")!=null){
+ 	if(request.getAttribute("error")!=null){
 			out.println(request.getAttribute("error"));
 		} 
 		

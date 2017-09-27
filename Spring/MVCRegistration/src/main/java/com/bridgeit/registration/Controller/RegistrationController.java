@@ -34,23 +34,21 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value = "registerUser", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute("User") User user, BindingResult result, RedirectAttributes redirattr){
-		
-		ModelAndView mode = null;
+	public String registerUser(@ModelAttribute("User") User user, BindingResult result, RedirectAttributes redirattr){
 		
 		validator.validate(user, result);
 		
 		if(!result.hasErrors()) {
 			
 			logger.info("Form validation: No Errors");
-			redirattr.addFlashAttribute("success","Successfully Registered");
-			return mode = new ModelAndView("redirect:/");
+			
+			return "redirect:/";
 		}
 		else {
 			
 			logger.info("Form validation: Found Errors");
-			redirattr.addFlashAttribute("failure","Fill up the form properly");
-			return mode = new ModelAndView("Register"); 
+			
+			return "Register"; 
 		}
 	}
 }

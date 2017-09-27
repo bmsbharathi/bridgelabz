@@ -8,10 +8,7 @@ Created On: 25 Sep 2017
 
 Description: A simple Registration App developed using Spring MVC. The App also provides a social Login feature using
 Google + login.
-<% if(request.getAttribute("success")!=null){%>
-				<%=request.getAttribute("success")%>
-	<%	}
-			%>
+
  --%>
 
 

@@ -1,0 +1,4 @@
+com/bridgeit/registration/Controller/LoginController.class
+com/bridgeit/registration/Controller/RegistrationController.class
+com/bridgeit/registration/Model/User.class
+com/bridgeit/registration/Service/FormValidator.class
