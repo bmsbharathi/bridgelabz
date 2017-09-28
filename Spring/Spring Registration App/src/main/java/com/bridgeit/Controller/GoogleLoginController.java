@@ -23,13 +23,13 @@ public class GoogleLoginController {
 		
 		System.out.println("Google Login Controller");
 		
-		return new RedirectView("https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8081/MVC2/callBack&response_type=code&client_id=210547452486-1lin2i9diu2gjbtvp2vubq89042lie45.apps.googleusercontent.com&approval_prompt=force");
+		return new RedirectView("https://accounts.google.com/o/oauth2/auth?scope=profile email&redirect_uri=http://localhost:8080/MVC2/callBack&response_type=code&client_id=210547452486-1lin2i9diu2gjbtvp2vubq89042lie45.apps.googleusercontent.com&approval_prompt=force");
 	}
 	
 	@RequestMapping(value = "callBack")
 	public String getGoogleUser(HttpServletRequest request) {
 	
-		System.out.println("getGoogleUser()");
+		System.out.println("getGoogleUser()"); 
 		String code  = request.getParameter("code");
 		Register user = googleCallBack.getGoogleCallBack(code);
 		HttpSession session = request.getSession(true);

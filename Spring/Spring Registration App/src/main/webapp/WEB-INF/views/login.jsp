@@ -12,9 +12,7 @@
 	<meta name="google-signin-client_id"><!-- content="210547452486-1lin2i9diu2gjbtvp2vubq89042lie45.apps.googleusercontent.com" --> 
 </head>
 <body>
-<%
-	
-%>
+
 	<h1 align="center">Login Form</h1>
 	<center style="color: green;">
 		<b>${messages}</b>

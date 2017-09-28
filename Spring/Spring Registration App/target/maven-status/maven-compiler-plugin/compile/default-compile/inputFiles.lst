@@ -2,6 +2,7 @@
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/Model/Register.java
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/Controller/GoogleLoginController.java
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/DAO/UserMapperImpl.java
+/home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/logger/Loggerr.java
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/Controller/RegistrationController.java
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/Model/Login.java
 /home/bridgeit/Downloads/MVCLogin2/src/main/java/com/bridgeit/Controller/LoginController.java

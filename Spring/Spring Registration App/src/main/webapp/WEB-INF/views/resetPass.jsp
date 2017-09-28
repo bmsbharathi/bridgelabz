@@ -14,9 +14,9 @@
 <br>
 <form method="post" action="reset">
 
-<input type="text" name="uname">
+<input type="text" name="uname" required>
 <div>${message2}</div><br>
-<input type="Submit" value="Generate OTP">
+<input type="Submit" value="Generate OTP" >
 </form>
 </center>
 

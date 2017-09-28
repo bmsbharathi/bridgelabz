@@ -48,6 +48,15 @@
 			<artifactId>spring-social-google</artifactId>
 			<version>1.0.0.RC1</version>
 		</dependency>-->
+		
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-all</artifactId>
+		    <version>1.9.5</version>
+		    <scope>test</scope>
+		</dependency>
+				
 
 		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 		<dependency>
@@ -68,14 +77,15 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.6.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		    <scope>test</scope>
+		</dependency>
+				
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -141,6 +151,48 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.9.1</version>
+		</dependency>
+				
+		<!-- Log4j Dependencies -->
+		
+	<!-- <dependency>
+	   <groupId>ch.qos.logback</groupId>
+	   <artifactId>logback-classic</artifactId>
+	   <version></version>
+	</dependency>
+	<dependency>
+	   <groupId>org.slf4j</groupId>
+	   <artifactId>slf4j-simple</artifactId>
+	   <version></version>
+	   <scope>compile</scope>
+	</dependency>
+	<dependency>
+	   <groupId>org.slf4j</groupId>
+	   <artifactId>slf4j-log4j12</artifactId>
+	   <version></version>
+	   <scope>compile</scope>
+	</dependency>
+	<dependency>
+	   <groupId>org.slf4j</groupId>
+	   <artifactId>slf4j-jdk14</artifactId>
+	   <version></version>
+	   <scope>compile</scope>
+	</dependency> -->
+	
+	
+
+	<dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>3.0.3</version>
+      <scope>test</scope>
+	</dependency>
 		
 	</dependencies>
 	<build>

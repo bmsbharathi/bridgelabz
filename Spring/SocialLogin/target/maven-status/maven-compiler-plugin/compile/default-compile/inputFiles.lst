@@ -1,0 +1,11 @@
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Model/GmailProfile.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Controller/RegistrationController.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/DAO/UserMapper.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Model/User.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Controller/LoginController.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/SocialLogin/GoogleSocialLogin.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Utility/MyBatisUtil.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Model/GmailToken.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Service/FormValidator.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/Controller/SocialLoginController.java
+/home/bridgeit/Music/SpringWorkspace/MVCRegistration/src/main/java/com/bridgeit/registration/DAO/UserMapperImpl.java

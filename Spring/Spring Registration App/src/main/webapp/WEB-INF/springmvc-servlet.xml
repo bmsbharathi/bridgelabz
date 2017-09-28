@@ -16,10 +16,6 @@
 
 	<bean id="mapperimpl" class="com.bridgeit.DAO.UserMapperImpl"></bean>
 	
-	<bean id="api_credentials"
-    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
- 
-   <!--  <property name="location" value="/main/resources/api_credentials.properties" /> -->
  
 </bean>
 

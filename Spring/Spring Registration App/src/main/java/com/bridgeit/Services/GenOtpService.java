@@ -1,3 +1,4 @@
+
 package com.bridgeit.Services;
 
 import java.util.Date; 
@@ -39,7 +40,7 @@ public class GenOtpService {
 		Session mailSession = Session.getInstance(props, new javax.mail.Authenticator() {
 
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("bmsbharathi@gmail.com", "bharathilumiaNEXUS");
+				return new PasswordAuthentication("bmsbharathi@gmail.com", " PASSWORD");
 			}
 		});
 
